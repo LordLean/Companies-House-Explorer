@@ -25,10 +25,9 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
                 "q" : query,
                 "items_per_page" : items_per_page
             }
-            response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
             # debugging
             try:
-                response = requests.get(base_url, auth=self.auth, params=params)
+                response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
                 print(response.status_code)
                 print(response.text)
             except requests.exceptions.RequestException as e:
