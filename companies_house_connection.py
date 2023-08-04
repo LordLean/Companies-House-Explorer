@@ -27,8 +27,12 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
             }
             response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
             # debugging
-            print(response.status_code)
-            print(response.text)
+            try:
+                response = requests.get(base_url, auth=self.auth, params=params)
+                print(response.status_code)
+                print(response.text)
+            except requests.exceptions.RequestException as e:
+                print(f"Request failed: {e}")
             data = response.json()
             return pd.json_normalize(data['items'])
         return _query(query, items_per_page, **kwargs)
