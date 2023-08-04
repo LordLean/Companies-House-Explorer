@@ -26,6 +26,9 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
                 "items_per_page" : items_per_page
             }
             response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
+            # debugging
+            print(response.status_code)
+            print(response.text)
             data = response.json()
             return pd.json_normalize(data['items'])
         return _query(query, items_per_page, **kwargs)
