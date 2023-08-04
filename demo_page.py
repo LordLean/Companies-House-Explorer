@@ -16,16 +16,16 @@ st.set_page_config(
     }
 )
 
-def get_lat_lng(postcode):
-    base_url = f"http://api.postcodes.io/postcodes/{postcode}"
-    response = requests.get(base_url)
-    data = response.json()
-    if data['status'] == 200:
-        latitude = data['result']['latitude']
-        longitude = data['result']['longitude']
-        return pd.Series([latitude, longitude])
-    else:
-        return pd.Series([None, None])
+# def get_lat_lng(postcode):
+#     base_url = f"http://api.postcodes.io/postcodes/{postcode}"
+#     response = requests.get(base_url)
+#     data = response.json()
+#     if data['status'] == 200:
+#         latitude = data['result']['latitude']
+#         longitude = data['result']['longitude']
+#         return pd.Series([latitude, longitude])
+#     else:
+#         return pd.Series([None, None])
 
 api_key = st.secrets["api_key"]
 
@@ -42,15 +42,15 @@ if submitted and input_company:
     # search on specified input
     company_data = conn.search_companies(input_company)
 
-    # get coordinates from UK postcodes
-    company_data[['latitude', 'longitude']] = company_data['address.postal_code'].apply(get_lat_lng)
-    # copy coords to df 
-    coords = company_data[["latitude", "longitude"]]
-    # remove Nones
-    coords.dropna(inplace=True)
-    # visualize df and map
+    # # get coordinates from UK postcodes
+    # company_data[['latitude', 'longitude']] = company_data['address.postal_code'].apply(get_lat_lng)
+    # # copy coords to df 
+    # coords = company_data[["latitude", "longitude"]]
+    # # remove Nones
+    # coords.dropna(inplace=True)
+    # # visualize df and map
     st.dataframe(company_data, use_container_width=True)
-    st.map(coords)
+    # st.map(coords)
 
 elif submitted and not input_company:
     st.warning("Enter a company, corporate entity, owner, or individual")
