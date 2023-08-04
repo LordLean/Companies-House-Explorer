@@ -19,7 +19,11 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
     def search_companies(self, query: str, ttl: int = 3600, items_per_page=300, **kwargs) -> pd.DataFrame:
         @st.cache_data(ttl=ttl)
         def _query(query: str, items_per_page=300, **kwargs):
-            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0'}
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',   
+            }
             base_url = "https://api.company-information.service.gov.uk/search/companies"
             params = {
                 "q" : query,
@@ -30,7 +34,6 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
                 print(response.status_code)
                 print(response.text)
                 data = response.json()
-                return
                 return pd.json_normalize(data['items'])
             except requests.exceptions.RequestException as e:
                 print(f"Request failed: {e}")
