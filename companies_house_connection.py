@@ -19,12 +19,13 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
     def search_companies(self, query: str, ttl: int = 3600, items_per_page=300, **kwargs) -> pd.DataFrame:
         @st.cache_data(ttl=ttl)
         def _query(query: str, items_per_page=300, **kwargs):
+            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0'}
             base_url = "https://api.company-information.service.gov.uk/search/companies"
             params = {
                 "q" : query,
                 "items_per_page" : items_per_page
             }
-            response = requests.get(base_url, auth=self.auth, params=params)
+            response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
             data = response.json()
             return pd.json_normalize(data['items'])
         return _query(query, items_per_page, **kwargs)

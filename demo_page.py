@@ -10,9 +10,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "Companies House PythonAPI Demo"
+        'Get Help': 'https://github.com/LordLean/Companies-House-Explorer/',
+        'Report a bug': "https://github.com/LordLean/Companies-House-Explorer/issues",
+        'About': "Companies House Connection Demo"
     }
 )
 
