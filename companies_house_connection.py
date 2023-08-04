@@ -27,7 +27,7 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
             base_url = "https://api.company-information.service.gov.uk/search/companies"
             params = {
                 "q" : query,
-                "items_per_page" : items_per_page
+                # "items_per_page" : items_per_page
             }
             return pd.DataFrame()
             # response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
