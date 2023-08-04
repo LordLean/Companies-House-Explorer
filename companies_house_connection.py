@@ -29,8 +29,9 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
                 "q" : query,
                 "items_per_page" : items_per_page
             }
-            response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
-            return response
+            return pd.DataFrame()
+            # response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
+            # return response
         return _query(query, items_per_page, **kwargs)
                 
         #         print(response.status_code)
