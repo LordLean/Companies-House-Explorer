@@ -33,8 +33,8 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
                 response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
                 print(response.status_code)
                 print(response.text)
-                data = response.json()
-                return pd.json_normalize(data['items'])
+                # data = response.json()
+                # return pd.json_normalize(data['items'])
             except requests.exceptions.RequestException as e:
                 print(f"Request failed: {e}")
                 return pd.DataFrame()  # Return an empty DataFrame in case of error
