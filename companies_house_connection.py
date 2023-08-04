@@ -31,11 +31,13 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
             }
             try:
                 response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
-                print(response.status_code)
-                print(response.text)
-                # data = response.json()
-                # return pd.json_normalize(data['items'])
-            except requests.exceptions.RequestException as e:
-                print(f"Request failed: {e}")
-                return pd.DataFrame()  # Return an empty DataFrame in case of error
+                return response
         return _query(query, items_per_page, **kwargs)
+                
+        #         print(response.status_code)
+        #         data = response.json()
+        #         return pd.json_normalize(data['items'])
+        #     except requests.exceptions.RequestException as e:
+        #         print(f"Request failed: {e}")
+        #         return pd.DataFrame()  # Return an empty DataFrame in case of error
+        # return _query(query, items_per_page, **kwargs)
