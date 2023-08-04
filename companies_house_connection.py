@@ -30,6 +30,7 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
                 print(response.status_code)
                 print(response.text)
                 data = response.json()
+                return
                 return pd.json_normalize(data['items'])
             except requests.exceptions.RequestException as e:
                 print(f"Request failed: {e}")
