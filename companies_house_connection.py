@@ -31,8 +31,9 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
             }
             try:
                 response = requests.get(base_url, auth=self.auth, params=params, headers=headers)
-                print(response.status_code)
-                print(response.text)
+                if not response:
+                    print(response.status_code)
+                    print(response.text)
                 data = response.json()
                 return pd.json_normalize(data['items'])
             except requests.exceptions.RequestException as e:
