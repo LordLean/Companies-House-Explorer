@@ -38,5 +38,5 @@ class CompaniesHouseConnection(ExperimentalBaseConnection[requests.Response]):
                 return pd.json_normalize(data['items'])
             except requests.exceptions.RequestException as e:
                 print(f"Request failed: {e}")
-                return pd.DataFrame()  # Return an empty DataFrame in case of error
+                return pd.DataFrame() 
         return _query(query, items_per_page, **kwargs)
