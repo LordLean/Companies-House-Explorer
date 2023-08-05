@@ -10,3 +10,5 @@ Guide to use:
 4. Insert public IP (seen in sidebar) into restricted IPs
 5. Copy API key into sidebar input
 6. Start querying! Why not try Facebook or Dominos?
+
+![Demo](https://github.com/LordLean/Companies-House-Explorer/blob/main/WATCHME.gif)
