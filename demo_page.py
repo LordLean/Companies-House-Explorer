@@ -71,7 +71,12 @@ with st.form("submit_form"):
         4. Insert public IP (seen in sidebar) into restricted IPs
         5. Copy API key into sidebar input
         6. Start querying! Why not try Facebook or Dominos?
+
+        ## Experimental Connection:
         """)
+        with open("companies_house_connection.py", "r") as file:
+            content = file.read()
+        st.code(content)
     submitted = st.form_submit_button("Submit")
 
 # build connection
